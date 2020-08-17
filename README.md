@@ -6,7 +6,6 @@ Reference the module to a specific version (recommended):
 
 ```hcl
 module Project-rsv {
-  deploy = var.deployOptionalFeatures.recovery_services_vault ? true : false
   env               = var.env
   userDefinedString = "${var.group}_${var.project}"
   resource_group    = local.resource_groups_L1.Network

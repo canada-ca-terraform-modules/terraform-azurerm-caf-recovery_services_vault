@@ -2,12 +2,6 @@ variable "env" {
   description = "(Required) You can use a prefix to add to the list of resource groups you want to create"
 }
 
-variable "deploy" {
-  description = "{Optional) Should the resource be deployed"
-  type = bool
-  default = true
-}
-
 variable "resource_group" {
   description = "(Required) Resource group object of the AKV to be created"
 }
