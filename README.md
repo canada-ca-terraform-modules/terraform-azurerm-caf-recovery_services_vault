@@ -21,15 +21,18 @@ locals {
 
 ## Inputs
 
-| Name                | Type   | Default  | Description                                                                                                       |
-| ------------------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| resource_group      | object | None     | (Required) Resource group object where to create the resource. Changing this forces a new resource to be created. |
-| tags                | map    | None     | (Required) Map of tags for the deployment.                                                                        |
-| max_length          | string | None     | (Optional) maximum length to the name of the resource.                                                            |
-| env                 | string | None     | (Required) You can use a prefix to add to the list of resource groups you want to create                          |
-| userDefinedString   | string | None     | (Required) UserDefinedString part of the name of the resource                                                     |
-| sku                 | string | Standard | (Optional) sku of the resource                                                                                    |
-| soft_delete_enabled | bool   | true     | (Optional) soft delete enabled of the resource                                                                    |
+| Name                    | Type   | Default  | Description                                                                                                       |
+| ----------------------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| resource_group          | object | None     | (Required) Resource group object where to create the resource. Changing this forces a new resource to be created. |
+| tags                    | map    | None     | (Required) Map of tags for the deployment.                                                                        |
+| max_length              | string | None     | (Optional) maximum length to the name of the resource.                                                            |
+| env                     | string | None     | (Required) You can use a prefix to add to the list of resource groups you want to create                          |
+| userDefinedString       | string | None     | (Required) UserDefinedString part of the name of the resource                                                     |
+| sku                     | string | Standard | (Optional) sku of the resource                                                                                    |
+| soft_delete_enabled     | bool   | true     | (Optional) soft delete enabled of the resource                                                                    |
+| group                   | string | None     | (Required) Group part of the name of the backup_policy                                                            |
+| project                 | string | None     | (Required) Project part of the name of the backup_policy                                                          |
+| recovery_services_vault | object | None     | Object container all parameters for the RSV                                                                       |
 
 ## Output
 
