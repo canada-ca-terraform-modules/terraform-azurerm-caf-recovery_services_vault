@@ -31,3 +31,16 @@ variable "soft_delete_enabled" {
   type        = bool
   default     = true
 }
+
+variable "recovery_services_vault" {
+  type = any
+  default = {}
+}
+
+variable "group" {
+  type = string
+}
+
+variable "project" {
+  type = string
+}
