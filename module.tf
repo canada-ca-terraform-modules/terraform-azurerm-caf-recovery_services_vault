@@ -58,6 +58,6 @@ resource "azurerm_backup_policy_vm" "backup_policy_vm" {
   }
 
   lifecycle {
-    ignore_changes = ["name"]  # due to the underscore being removed on new names, but allowed on existing resources, changing this in the newer module should not trigger a replace.
+    ignore_changes = [ name ]  # due to the underscore being removed on new names, but allowed on existing resources, changing this in the newer module should not trigger a replace.
   }
 }
