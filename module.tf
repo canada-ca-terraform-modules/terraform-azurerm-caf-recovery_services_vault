@@ -10,7 +10,7 @@ resource azurerm_recovery_services_vault recovery_services_vault {
 resource "azurerm_backup_policy_vm" "backup_policy_vm" {
   for_each = try(var.recovery_services_vault.schedules, {})
   
-  name                = "${var.env}CNR-${var.group}_${var.project}-${each.key}-rsvp"
+  name                = replace("${var.env}CNR-${var.group}_${var.project}-${each.key}-rsvp", "_", "-")
   resource_group_name = var.resource_group.Backups.name
   recovery_vault_name = azurerm_recovery_services_vault.recovery_services_vault.name
   # Possible timezone values at https://jackstromberg.com/2017/01/list-of-time-zones-consumed-by-azure/
@@ -55,5 +55,9 @@ resource "azurerm_backup_policy_vm" "backup_policy_vm" {
       weeks    = try(each.value.retention_yearly.weeks, ["Last"])
       months   = try(each.value.retention_yearly.months, ["January"])
     }
+  }
+
+  lifecycle {
+    ignore_changes = [ name ]  # due to the underscore being removed on new names, but allowed on existing resources, changing this in the newer module should not trigger a replace.
   }
 }
