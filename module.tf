@@ -10,7 +10,7 @@ resource azurerm_recovery_services_vault recovery_services_vault {
 resource "azurerm_backup_policy_vm" "backup_policy_vm" {
   for_each = try(var.recovery_services_vault.schedules, {})
   
-  name                = "${var.env}CNR-${var.group}_${var.project}-${each.key}-rsvp"
+  name                = "${var.env}CNR-${var.group}-${var.project}-${each.key}-rsvp"
   resource_group_name = var.resource_group.Backups.name
   recovery_vault_name = azurerm_recovery_services_vault.recovery_services_vault.name
   # Possible timezone values at https://jackstromberg.com/2017/01/list-of-time-zones-consumed-by-azure/
