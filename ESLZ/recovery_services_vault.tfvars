@@ -65,7 +65,7 @@ recovery_services_vaults = {
     # public_network_access_enabled      = true            # (Optional) Defaults to true
     # storage_mode_type                  = "GeoRedundant"  # (Optional) GeoRedundant | LocallyRedundant | ZoneRedundant. Defaults to GeoRedundant.
     # cross_region_restore_enabled       = false           # (Optional) Only valid when storage_mode_type = GeoRedundant.
-    # immutability                       = "Disabled"      # (Optional) Locked | Unlocked | Disabled
+    # immutability                       = "Disabled"      # (Optional) Locked | Unlocked | Disabled. WARNING: "Locked" is IRREVERSIBLE — once set, it cannot be changed back to Unlocked or Disabled.
     # classic_vmware_replication_enabled = false            # (Optional) Changing this forces a new resource.
 
     # identity = {

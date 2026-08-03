@@ -267,3 +267,54 @@ run "backup_policy_tiering_and_instant_restore_rg" {
     error_message = "tiering_policy block not rendered"
   }
 }
+
+run "backup_policy_weekly_weekdays" {
+  command = plan
+
+  variables {
+    recovery_services_vault = {
+      schedules = {
+        weekly = {
+          backup = {
+            frequency = "Weekly"
+            time      = "23:00"
+            weekdays  = ["Sunday", "Wednesday"]
+          }
+          retention_weekly = {
+            count    = 5
+            weekdays = ["Sunday", "Wednesday"]
+          }
+        }
+      }
+    }
+  }
+
+  assert {
+    condition     = azurerm_backup_policy_vm.backup_policy_vm["weekly"].backup[0].frequency == "Weekly"
+    error_message = "backup.frequency must be Weekly"
+  }
+
+  assert {
+    condition     = toset(azurerm_backup_policy_vm.backup_policy_vm["weekly"].backup[0].weekdays) == toset(["Sunday", "Wednesday"])
+    error_message = "backup.weekdays must be applied for Weekly frequency"
+  }
+}
+
+run "backup_policy_daily_has_no_weekdays" {
+  command = plan
+
+  variables {
+    recovery_services_vault = {
+      schedules = {
+        daily = {
+          retention_daily = { count = 7 }
+        }
+      }
+    }
+  }
+
+  assert {
+    condition     = azurerm_backup_policy_vm.backup_policy_vm["daily"].backup[0].weekdays == null || length(azurerm_backup_policy_vm.backup_policy_vm["daily"].backup[0].weekdays) == 0
+    error_message = "backup.weekdays must be null/empty for Daily frequency (only applies to Weekly)"
+  }
+}

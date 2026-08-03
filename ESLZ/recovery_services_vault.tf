@@ -10,7 +10,7 @@ variable "recovery_services_vaults" {
 
 module "recovery_services_vault" {
   for_each = var.recovery_services_vaults
-  source   = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-recovery_services_vault.git?ref=v1.3.0"
+  source   = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-recovery_services_vault.git?ref=v1.3.0" # TODO: update to latest tag after this PR is merged and tagged
 
   env                     = var.env
   userDefinedString       = each.key

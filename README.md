@@ -37,7 +37,7 @@ locals {
 | `public_network_access_enabled` | bool | Defaults to `true` |
 | `storage_mode_type` | string | `GeoRedundant` \| `LocallyRedundant` \| `ZoneRedundant`. Defaults to `GeoRedundant` |
 | `cross_region_restore_enabled` | bool | Only valid when `storage_mode_type = GeoRedundant`. Defaults to `false` |
-| `immutability` | string | `Locked` \| `Unlocked` \| `Disabled` |
+| `immutability` | string | `Locked` \| `Unlocked` \| `Disabled`. **Warning:** `Locked` is **irreversible** — once set it cannot be changed back to `Unlocked` or `Disabled` |
 | `classic_vmware_replication_enabled` | bool | Changing this forces a new resource |
 | `identity` | object | `{ type, identity_ids }` |
 | `encryption` | object | `{ key_id, infrastructure_encryption_enabled, user_assigned_identity_id, use_system_assigned_identity }`. Requires `identity` |
@@ -50,7 +50,7 @@ locals {
 | `name` | string | Override the auto-generated backup policy name (default: `{env}CNR-{group}_{project}-{key}-rsvp`) |
 | `policy_type` | string | `V1` \| `V2` (Enhanced Policy). Defaults to `V1`. Changing this forces a new resource |
 | `consistency_type` | string | Only valid when `policy_type = V2`. Only possible value is `OnlyCrashConsistent` |
-| `backup.hour_interval` / `backup.hour_duration` | number | Used when `backup.frequency = Hourly` |
+| `backup.hour_interval` / `backup.hour_duration` | number | Used when `backup.frequency = Hourly`. `backup.weekdays` is only applicable when `backup.frequency = Weekly` |
 | `retention_monthly.days` / `retention_monthly.include_last_days` | list(number) / bool | Alternative to `weekdays`/`weeks` |
 | `retention_yearly.days` / `retention_yearly.include_last_days` | list(number) / bool | Alternative to `weekdays`/`weeks` |
 | `instant_restore_resource_group` | object | `{ prefix, suffix }` |

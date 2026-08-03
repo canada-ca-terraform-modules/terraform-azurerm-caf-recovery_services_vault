@@ -63,7 +63,7 @@ resource "azurerm_backup_policy_vm" "backup_policy_vm" {
   backup {
     frequency     = try(each.value.backup.frequency, "Daily")
     time          = try(each.value.backup.time, "23:00")
-    weekdays      = try(each.value.backup.weekdays, [])
+    weekdays      = try(each.value.backup.weekdays, null)
     hour_interval = try(each.value.backup.hour_interval, null)
     hour_duration = try(each.value.backup.hour_duration, null)
   }
