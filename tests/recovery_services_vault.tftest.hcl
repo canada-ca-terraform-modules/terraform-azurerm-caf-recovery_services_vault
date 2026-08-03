@@ -314,7 +314,7 @@ run "backup_policy_daily_has_no_weekdays" {
   }
 
   assert {
-    condition     = azurerm_backup_policy_vm.backup_policy_vm["daily"].backup[0].weekdays == null || length(azurerm_backup_policy_vm.backup_policy_vm["daily"].backup[0].weekdays) == 0
+    condition     = try(length(azurerm_backup_policy_vm.backup_policy_vm["daily"].backup[0].weekdays), 0) == 0
     error_message = "backup.weekdays must be null/empty for Daily frequency (only applies to Weekly)"
   }
 }
