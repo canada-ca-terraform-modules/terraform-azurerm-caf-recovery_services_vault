@@ -70,7 +70,7 @@ See [`ESLZ/recovery_services_vault.tfvars`](ESLZ/recovery_services_vault.tfvars)
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 5.0.1 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 5.0 |
 
 ## Modules
 
