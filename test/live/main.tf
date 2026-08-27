@@ -1,3 +1,4 @@
+# live-test workflow trigger (path-filter requires a test/live/** change)
 terraform {
   required_version = ">= 1.9"
   required_providers {
